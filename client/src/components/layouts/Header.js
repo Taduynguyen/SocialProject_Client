@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary bg-danger header">
       <Container>
-        <Navbar.Brand href="#home">BienHoaEat</Navbar.Brand>
+        <Navbar.Brand href="#home">LifeLink</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

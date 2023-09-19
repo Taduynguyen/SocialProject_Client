@@ -1,0 +1,13 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: red; /* Đổi màu nền header theo ý muốn */
+    z-index: 100; /* Đảm bảo header hiển thị trên top của tất cả các phần khác */
+    /* Thêm các thuộc tính CSS khác cho header của bạn */
+  }
+
+  .main-content {
+    margin-top: 100px; 
+  }

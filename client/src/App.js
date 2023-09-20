@@ -22,12 +22,12 @@ function App() {
         <div className="main-content">
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/profile111" element={<Profile/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
           <Route path="/loading" element={<Loader/>} />
-          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/profile/edit-profile" element={<EditProfilePage />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
+          
           <Route path="detail-post/:postId" element={<DetailPost />} />
         </Routes>
         </div>

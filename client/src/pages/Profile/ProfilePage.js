@@ -1,24 +1,37 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/AuthContext/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 
 function ProfilePage() {
-  const { auth } = useContext(AuthContext);
-  console.log(auth);
-  const user = auth.user;
+  const { allUsers } = useContext(AuthContext);
+  console.log("Tao Đây", allUsers);
   const navigate = useNavigate();
+  const { userId } = useParams();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (allUsers && allUsers.length > 0) {
+      const foundUser = allUsers.find((user) => user._id === userId);
+      setUser(foundUser);
+    }
+  }, [userId, allUsers]);
 
   const handleEditProfileClick = () => {
     navigate("edit-profile")
+  };
+  if (!user) {
+    return <div>Người dùng không tồn tại</div>
   }
   return (
+    
     <div className="container py5">
       <div className="row">
         <div className="col-lg-4">
           <div className="card mb-4">
             <div className="card-body text-center">
               <img
-                src={user.avatar}
+                src={user.avatar ? user.avatar: "https://st.quantrimang.com/photos/image/072015/22/avatar.jpg"}
                 alt="avatar"
                 className="rounded-circle img-fluid"
                 style={{ width: "150px" }}
@@ -86,7 +99,7 @@ function ProfilePage() {
                 <p className="mb-0">About</p>
               </div>
               <div className="col-sm-9">
-                <p className="text-muted mb-0">DKJASDKJSAHDJKHASDKJAHSDJKASHDKJASHDKJSAHDKJSAHDKJASHDKJASHDKJASHDKAJSDHAJKSHDAKSJDHSAKJDHAKJSDHAKSJDHKS</p>
+                <p className="text-muted mb-0">{user.about ? user.about : "Viết lung ta lung tung vô đây"}</p>
               </div>
             </div>  
             </div>
@@ -94,6 +107,7 @@ function ProfilePage() {
         </div>
       </div>
     </div>
+    
   );
 }
 

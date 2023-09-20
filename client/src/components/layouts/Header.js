@@ -8,6 +8,8 @@ import { Button } from "react-bootstrap";
 const Header = () => {
   const {auth, handleLogout} = useContext(AuthContext);
   const isLogin = auth.isAuthenticated;
+  const userId = auth.user._id;
+  console.log("đây là id",userId);
   return (
     <Navbar expand="lg" className="bg-body-tertiary bg-danger header">
       <Container>
@@ -16,7 +18,7 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Trang chủ</Nav.Link>
-            {isLogin && <Nav.Link href="profile">Thông tin cá nhân</Nav.Link>}
+            {isLogin && <Nav.Link href={`/profile/${userId}`}>Thông tin cá nhân</Nav.Link>}
             {!isLogin && <Nav.Link href="login">Đăng nhập</Nav.Link>}
             {!isLogin && <Nav.Link href="register">Đăng ký</Nav.Link>}
             {isLogin && <Button variant="light" onClick={handleLogout}>Đăng xuất</Button>}

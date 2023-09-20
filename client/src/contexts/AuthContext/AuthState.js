@@ -10,6 +10,7 @@ const AuthState = ({ children }) => {
   });
 
   const [postData, setPostData] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
 
   // 1. Call API /me => user info
   // 2. Update auth state
@@ -38,20 +39,32 @@ const AuthState = ({ children }) => {
     localStorage.clear();
   };
 
-  // Get all post data
+  // Get all posts data
   const getAllPost = async () => {
     try {
       const response = await postAPI.getAllPost();
       const data = response.data;
-
       setPostData(data);
     } catch (error) {
       console.log(error);
     }
   };
 
+  //Get all users data
+  const getAllUser = async () => {
+    try {
+      const response = await authAPI.allUsers();
+      const data = response.data;
+      setAllUsers(data);
+      console.log(allUsers);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     getAllPost();
+    getAllUser();
     const accessToken = localStorage.getItem("accessToken");
     // Call API /me => Check token => User, isauthenticated
     if (accessToken) {
@@ -68,6 +81,7 @@ const AuthState = ({ children }) => {
         fetchCurrentUser,
         postData,
         getAllPost,
+        allUsers,
       }}
     >
       {children}

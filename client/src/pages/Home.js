@@ -3,12 +3,13 @@ import { Container, Row, Col } from "react-bootstrap";
 import PostList from "./Home/Content";
 import LeftSideBar from "./Home/LeftSideBar";
 import AuthContext from "../contexts/AuthContext/AuthContext";
+import RightSideBar from "./Home/RightSideBar";
 
 
 
 function Home() {
   const {postData} = useContext(AuthContext);
-
+  const {allUsers} = useContext(AuthContext);; 
   
   return (
     <Container fluid>
@@ -26,6 +27,7 @@ function Home() {
         {/* Cột phải (quảng cáo, bạn bè, vv) */}
         <Col md={3}>
           <div><b>Trò chuyện</b></div>
+          <RightSideBar users = {allUsers} />
         </Col>
       </Row>
     </Container>

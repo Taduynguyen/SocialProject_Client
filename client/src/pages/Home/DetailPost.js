@@ -151,6 +151,7 @@ function DetailPost() {
                 />
               </Button>
             </InputGroup>
+            <p><b>Ngày đăng</b></p>{post.createAt}
           </Form>
           <Link to="/" className="btn btn-primary">
             Về trang chủ
